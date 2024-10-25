@@ -9,16 +9,25 @@ public class Keep
   public DateTime UpdatedAt { get; set; }
 
   [MaxLength(255)]
+  [Required]
   public string Name { get; set; }
 
   [MaxLength(1000)]
+  [Required]
   public string Description { get; set; }
 
   [MaxLength(1000)]
+  [Url]
+  [Required]
   public string Img { get; set; }
 
-  public int Views { get; set; }
-  public int Kept { get; set; }
+  [Required]
+  public int Views { get; set; } = 0;
+
+  [Required]
+  public int Kept { get; set; } = 0;
+
+  [Required]
   public string CreatorId { get; set; }
   public Profile Creator { get; set; }
 }
@@ -26,10 +35,25 @@ public class Keep
 
 public class KeepCreationDTO
 {
+  [MaxLength(255)]
+  [Required]
   public string Name { get; set; }
+
+  [MaxLength(1000)]
+  [Required]
   public string Description { get; set; }
+
+  [MaxLength(1000)]
+  [Url]
+  [Required]
   public string Img { get; set; }
-  public int Views { get; set; }
-  public int Kept { get; set; }
+
+  [Required]
+  public int Views { get; set; } = 0;
+
+  [Required]
+  public int Kept { get; set; } = 0;
+
+  [Required]
   public string CreatorId { get; set; }
 }

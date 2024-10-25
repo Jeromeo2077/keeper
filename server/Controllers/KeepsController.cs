@@ -64,7 +64,7 @@ public class KeepsController : ControllerBase
 
 
   [Authorize]
-  [HttpGet("keeps/{keepId}")]
+  [HttpPut("{keepId}")]
 
   public async Task<ActionResult<Keep>> UpdateKeepById([FromBody] KeepCreationDTO keepUpdateData, int keepId)
   {

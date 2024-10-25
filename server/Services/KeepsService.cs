@@ -68,6 +68,13 @@ public class KeepsService
       throw new Exception("Invalid Access: You are not the creator of this Keep");
     }
 
+    keep.Name = keepUpdateData.Name ?? keep.Name;
+    keep.Description = keepUpdateData.Description ?? keep.Description;
+    keep.Img = keepUpdateData.Img ?? keep.Img;
+    keep.Views = keepUpdateData.Views;
+    keep.Kept = keepUpdateData.Kept;
+
+
     keep = _repository.UpdateKeepById(keepUpdateData, keepId);
 
     return keep;

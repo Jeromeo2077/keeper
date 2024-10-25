@@ -1,5 +1,6 @@
 
 
+
 namespace keeper.Services;
 
 public class KeepsService
@@ -35,8 +36,14 @@ public class KeepsService
   internal Keep GetKeepById(int keepId)
   {
     Keep keep = _repository.GetKeepById(keepId);
+
+    if (keep == null)
+    {
+      throw new Exception("Error: Invalid Keep Id");
+    }
     return keep;
   }
+
 
 
   // internal List<Keep> GetKeepById(int keepId, string userId)
@@ -44,4 +51,26 @@ public class KeepsService
   //   List<Keep> keep = _repository.GetKeepById(keepId, userId);
   //   return keep;
   // }
+
+
+  internal Keep UpdateKeepById(KeepCreationDTO keepUpdateData, int keepId, Account userInfo)
+  {
+
+    Keep keep = _repository.GetKeepById(keepId);
+
+    if (keep == null)
+    {
+      throw new Exception("Error: Invalid Keep Id");
+    }
+
+    if (keep.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this Keep");
+    }
+
+    keep = _repository.UpdateKeepById(keepUpdateData, keepId);
+
+    return keep;
+  }
+
 }

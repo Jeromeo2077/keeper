@@ -1,5 +1,6 @@
 
 
+
 namespace keeper.Repositories;
 
 public class KeepsRepository
@@ -92,5 +93,32 @@ public class KeepsRepository
       return keep;
     }, new { keepId }).FirstOrDefault();
     return keep;
+  }
+
+  internal Keep UpdateKeepById(KeepCreationDTO keepUpdateData, int keepId)
+  {
+    string sql = @"
+        UPDATE keeps
+        SET
+          name = @Name,
+          description = @Description,
+          img = @Img,
+          views = @Views,
+          kept = @Kept
+        WHERE id = @KeepId;
+        SELECT
+          keeps.*,
+          accounts.*
+        FROM
+          keeps
+        JOIN 
+          accounts ON keeps.creatorId = accounts.id
+        WHERE keeps.id = @KeepId;";
+
+    return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+    {
+      keep.Creator = profile;
+      return keep;
+    }, new { keepUpdateData.Name, keepUpdateData.Description, keepUpdateData.Img, keepUpdateData.Views, keepUpdateData.Kept, keepId }).FirstOrDefault();
   }
 }

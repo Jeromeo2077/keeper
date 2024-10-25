@@ -1,4 +1,5 @@
 
+
 namespace keeper.Repositories;
 
 public class KeepsRepository
@@ -33,7 +34,6 @@ public class KeepsRepository
       return keep;
     }, new { keepCreationData.Name, keepCreationData.Description, keepCreationData.Img, keepCreationData.Views, keepCreationData.Kept, CreatorId }).FirstOrDefault();
   }
-
 
 
   internal List<Keep> GetAllKeeps()
@@ -72,4 +72,25 @@ public class KeepsRepository
   //     return keep;
   //   }).ToList();
   // }
+
+
+  internal Keep GetKeepById(int keepId)
+  {
+    string sql = @"
+      SELECT
+        keeps.*,
+        accounts.*
+      FROM
+        keeps
+      JOIN 
+        accounts ON keeps.creatorId = accounts.id
+      WHERE keeps.id = @keepId;";
+
+    Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+    {
+      keep.Creator = profile;
+      return keep;
+    }, new { keepId }).FirstOrDefault();
+    return keep;
+  }
 }

@@ -28,4 +28,21 @@ public class KeepsController : ControllerBase
       return BadRequest(exception.Message);
     }
   }
+
+
+  [HttpGet]
+  public ActionResult<List<Keep>> GetAllKeeps()
+  {
+    try
+    {
+      // Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      // List<Keep> keeps = _keepsService.GetAllKeeps(userInfo?.Id);
+      List<Keep> keeps = _keepsService.GetAllKeeps();
+      return Ok(keeps);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }

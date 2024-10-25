@@ -4,8 +4,13 @@ namespace keeper.Models;
 
 public class Keep
 {
+  [Required]
   public int Id { get; set; }
+
+  [Required]
   public DateTime CreatedAt { get; set; }
+
+  [Required]
   public DateTime UpdatedAt { get; set; }
 
   [MaxLength(255)]
@@ -27,7 +32,6 @@ public class Keep
   [Required]
   public int Kept { get; set; } = 0;
 
-  [Required]
   public string CreatorId { get; set; }
   public Profile Creator { get; set; }
 }
@@ -54,6 +58,5 @@ public class KeepCreationDTO
   [Required]
   public int Kept { get; set; } = 0;
 
-  [Required]
   public string CreatorId { get; set; }
 }

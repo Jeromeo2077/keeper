@@ -75,7 +75,7 @@ public class KeepsService
     keep.Kept = keepUpdateData.Kept;
 
 
-    keep = _repository.UpdateKeepById(keepUpdateData, keepId);
+    keep = _repository.UpdateKeepById(keep, keepId);
 
     return keep;
   }

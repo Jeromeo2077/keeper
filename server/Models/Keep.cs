@@ -23,7 +23,6 @@ public class Keep
 
   [MaxLength(1000)]
   [Url]
-  [Required]
   public string Img { get; set; }
 
   [Required]
@@ -49,7 +48,6 @@ public class KeepCreationDTO
 
   [MaxLength(1000)]
   [Url]
-  [Required]
   public string Img { get; set; }
 
   [Required]

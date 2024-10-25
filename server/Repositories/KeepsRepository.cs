@@ -1,6 +1,7 @@
 
 
 
+
 namespace keeper.Repositories;
 
 public class KeepsRepository
@@ -95,7 +96,7 @@ public class KeepsRepository
     return keep;
   }
 
-  internal Keep UpdateKeepById(KeepCreationDTO keepUpdateData, int keepId)
+  internal Keep UpdateKeepById(Keep keepUpdateData, int keepId)
   {
     string sql = @"
         UPDATE keeps

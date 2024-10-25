@@ -15,6 +15,9 @@ CREATE TABLE keeps (
     description VARCHAR(1000) NOT NULL,
     img VARCHAR(1000) NOT NULL,
     views INT NOT NULL,
+    kept INT NOT NULL,
     creatorId VARCHAR(255) NOT NULL,
     Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 )
+
+drop table keeps;

@@ -13,9 +13,9 @@ public class KeepsRepository
   {
     string sql = @"
       INSERT INTO keeps
-      (name, description, img, views, creatorId)
+      (name, description, img, views, kept, creatorId)
       VALUES
-      (@Name, @Description, @Img, @Views, @CreatorId);
+      (@Name, @Description, @Img, @Views, @kept, @CreatorId);
 
       SELECT
         keeps.*,
@@ -30,6 +30,6 @@ public class KeepsRepository
     {
       keep.Creator = profile;
       return keep;
-    }, new { keepCreationData.Name, keepCreationData.Description, keepCreationData.Img, keepCreationData.Views, CreatorId }).FirstOrDefault();
+    }, new { keepCreationData.Name, keepCreationData.Description, keepCreationData.Img, keepCreationData.Views, keepCreationData.Kept, CreatorId }).FirstOrDefault();
   }
 }

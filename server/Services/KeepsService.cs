@@ -12,6 +12,7 @@ public class KeepsService
 
   internal Keep CreateKeep(KeepCreationDTO keepCreationData, Account userInfo)
   {
-    return _repository.CreateKeep(keepCreationData, userInfo);
+
+    return _repository.CreateKeep(keepCreationData, userInfo.Id);
   }
 }

@@ -20,4 +20,14 @@ CREATE TABLE keeps (
     Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 )
 
-drop table keeps;
+CREATE TABLE vaults (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(1000) NOT NULL,
+    img VARCHAR(1000) NOT NULL,
+    isPrivate BOOLEAN NOT NULL,
+    creatorId VARCHAR(255) NOT NULL,
+    Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+)

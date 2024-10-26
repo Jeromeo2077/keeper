@@ -2,6 +2,7 @@
 
 
 
+
 namespace keeper.Repositories;
 
 public class KeepsRepository
@@ -121,5 +122,27 @@ public class KeepsRepository
       keep.Creator = profile;
       return keep;
     }, new { keepUpdateData.Name, keepUpdateData.Description, keepUpdateData.Img, keepUpdateData.Views, keepUpdateData.Kept, keepId }).FirstOrDefault();
+  }
+
+  internal Keep DeleteKeepById(int keepId)
+  {
+    string sql = @"
+        DELETE FROM keeps
+        WHERE id = @keepId
+        LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { keepId });
+
+    if (rowsAffected == 0)
+    {
+      throw new Exception("Error: No Keep Found");
+    }
+
+    if (rowsAffected > 1)
+    {
+      throw new Exception("Error: More than one Keep Deleted");
+    }
+
+    return null;
   }
 }

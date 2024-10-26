@@ -80,4 +80,22 @@ public class KeepsService
     return keep;
   }
 
+
+  internal String DeleteKeepById(int keepId, Account userInfo)
+  {
+    Keep keep = _repository.GetKeepById(keepId);
+
+    if (keep == null)
+    {
+      throw new Exception("Error: Invalid Keep Id");
+    }
+
+    if (keep.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this Keep");
+    }
+
+    _repository.DeleteKeepById(keepId);
+    return $"Keep {keep.Name} has been deleted";
+  }
 }

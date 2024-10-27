@@ -92,7 +92,7 @@ public class KeepsRepository
     return keep;
   }
 
-  internal Keep UpdateKeepById(Keep keepUpdateData, int keepId)
+  internal Keep UpdateKeepById(Keep keep, int keepId)
   {
     string sql = @"
         UPDATE keeps
@@ -116,7 +116,7 @@ public class KeepsRepository
     {
       keep.Creator = profile;
       return keep;
-    }, new { keepUpdateData.Name, keepUpdateData.Description, keepUpdateData.Img, keepUpdateData.Views, keepUpdateData.Kept, keepId }).FirstOrDefault();
+    }, new { keep.Name, keep.Description, keep.Img, keep.Views, keep.Kept, keepId }).FirstOrDefault();
   }
 
   internal Keep DeleteKeepById(int keepId)

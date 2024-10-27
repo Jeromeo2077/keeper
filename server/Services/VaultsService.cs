@@ -16,12 +16,18 @@ public class VaultsService
     return vault;
   }
 
-  internal Vault GetVaultById(int vaultId)
+  internal Vault GetVaultById(int vaultId, Account userInfo)
   {
     Vault vault = _repository.GetVaultById(vaultId);
+
     if (vault == null)
     {
       throw new Exception("Error: Invalid Vault Id");
+    }
+
+    if (vault.IsPrivate == true && vault.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Error: This Vault is Private");
     }
     return vault;
   }

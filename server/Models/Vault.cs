@@ -18,7 +18,6 @@ namespace keeper.Models
     public string Name { get; set; }
 
     [MaxLength(1000)]
-    [Required]
     public string Description { get; set; }
 
     [MaxLength(1000)]
@@ -38,7 +37,6 @@ namespace keeper.Models
     public string Name { get; set; }
 
     [MaxLength(1000)]
-    [Required]
     public string Description { get; set; }
 
     [MaxLength(1000)]

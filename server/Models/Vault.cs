@@ -23,7 +23,6 @@ namespace keeper.Models
 
     [MaxLength(1000)]
     [Url]
-    [Required]
     public string Img { get; set; }
 
     [Required]
@@ -44,7 +43,6 @@ namespace keeper.Models
 
     [MaxLength(1000)]
     [Url]
-    [Required]
     public string Img { get; set; }
 
     [Required]

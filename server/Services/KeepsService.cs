@@ -55,11 +55,6 @@ public class KeepsService
 
     Keep keep = _repository.GetKeepById(keepId);
 
-    if (keep == null)
-    {
-      throw new Exception("Error: Invalid Keep Id");
-    }
-
     if (keep.CreatorId != userInfo.Id)
     {
       throw new Exception("Invalid Access: You are not the creator of this Keep");

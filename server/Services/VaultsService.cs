@@ -44,4 +44,17 @@ public class VaultsService
     vault = _repository.UpdateVaultById(vault, vaultId);
     return vault;
   }
+
+  internal string DeleteVaultById(int vaultId, Account userInfo)
+  {
+    Vault vault = _repository.GetVaultById(vaultId);
+
+    if (vault.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this Vault");
+    }
+
+    _repository.DeleteVaultById(vaultId);
+    return $"Vault {vault.Name} has been successfully deleted";
+  }
 }

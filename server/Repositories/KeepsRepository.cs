@@ -9,7 +9,7 @@ public class KeepsRepository
   }
   private readonly IDbConnection _db;
 
-  internal Keep CreateKeep(KeepCreationDTO keepCreationData, string CreatorId)
+  internal Keep CreateKeep(KeepCreationDTO keepCreationData, string creatorId)
   {
     string sql = @"
       INSERT INTO keeps
@@ -30,7 +30,7 @@ public class KeepsRepository
     {
       keep.Creator = profile;
       return keep;
-    }, new { keepCreationData.Name, keepCreationData.Description, keepCreationData.Img, keepCreationData.Views, keepCreationData.Kept, CreatorId }).FirstOrDefault();
+    }, new { keepCreationData.Name, keepCreationData.Description, keepCreationData.Img, keepCreationData.Views, keepCreationData.Kept, creatorId }).FirstOrDefault();
   }
 
 

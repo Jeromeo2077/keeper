@@ -1,5 +1,6 @@
 
 
+
 namespace keeper.Repositories;
 
 
@@ -54,5 +55,29 @@ public class VaultsRepository
       vault.Creator = profile;
       return vault;
     }, new { vaultId }).FirstOrDefault();
+  }
+
+  internal Vault UpdateVaultById(Vault vault, int vaultId)
+  {
+    string sql = @"
+    UPDATE vaults
+    SET
+      name = @Name,
+      description = @Description,
+      img = @Img,
+      isPrivate = @IsPrivate
+    WHERE id = @VaultId;
+    SELECT
+      vaults.*,
+      accounts.*
+    FROM vaults
+    JOIN accounts ON vaults.creatorId = accounts.id
+    WHERE vaults.id = @VaultId;";
+
+    return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }, new { vault.Name, vault.Description, vault.Img, vault.IsPrivate, vaultId }).FirstOrDefault();
   }
 }

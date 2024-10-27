@@ -25,4 +25,23 @@ public class VaultsService
     }
     return vault;
   }
+
+  internal Vault UpdateVaultById(VaultCreationDTO vaultUpdateData, int vaultId, Account userInfo)
+  {
+    Vault vault = _repository.GetVaultById(vaultId);
+
+    if (vault.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this Vault");
+    }
+
+    vault.Name = vaultUpdateData.Name ?? vault.Name;
+    vault.Description = vaultUpdateData.Description ?? vault.Description;
+    vault.Img = vaultUpdateData.Img ?? vault.Img;
+    vault.IsPrivate = vaultUpdateData.IsPrivate;
+    vault.CreatorId = vault.CreatorId;
+
+    vault = _repository.UpdateVaultById(vault, vaultId);
+    return vault;
+  }
 }

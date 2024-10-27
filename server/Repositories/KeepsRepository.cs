@@ -119,7 +119,7 @@ public class KeepsRepository
     }, new { keep.Name, keep.Description, keep.Img, keep.Views, keep.Kept, keepId }).FirstOrDefault();
   }
 
-  internal Keep DeleteKeepById(int keepId)
+  internal void DeleteKeepById(int keepId)
   {
     string sql = @"
         DELETE FROM keeps
@@ -137,7 +137,5 @@ public class KeepsRepository
     {
       throw new Exception("Error: More than one Keep Deleted");
     }
-
-    return null;
   }
 }

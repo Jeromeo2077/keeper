@@ -33,7 +33,6 @@ namespace keeper.Models
   public class VaultCreationDTO
   {
     [MaxLength(255)]
-    [Required]
     public string Name { get; set; }
 
     [MaxLength(1000)]
@@ -43,7 +42,6 @@ namespace keeper.Models
     [Url]
     public string Img { get; set; }
 
-    [Required]
     public bool IsPrivate { get; set; } = false;
     public string CreatorId { get; set; }
   }

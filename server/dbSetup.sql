@@ -31,3 +31,15 @@ CREATE TABLE vaults (
     creatorId VARCHAR(255) NOT NULL,
     Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 )
+
+CREATE TABLE vaultkeeps (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    vaultId INT NOT NULL,
+    keepId INT NOT NULL,
+    creatorId VARCHAR(255) NOT NULL,
+    Foreign Key (vaultId) REFERENCES vaults (id) ON DELETE CASCADE,
+    Foreign Key (keepId) REFERENCES keeps (id) ON DELETE CASCADE,
+    Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+)

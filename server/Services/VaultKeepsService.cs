@@ -1,4 +1,5 @@
 
+
 namespace keeper.Services;
 
 public class VaultKeepsService
@@ -31,5 +32,28 @@ public class VaultKeepsService
   private List<VaultKeep_Keep> GetKeepsByVaultId(int vaultId)
   {
     return _repository.GetKeepsByVaultId(vaultId);
+  }
+
+  internal void DeleteKeepVault(int vaultKeepId, Account userInfo)
+  {
+    VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId);
+
+    if (vaultKeep.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this VaultKeep");
+    }
+    _repository.DeleteKeepVault(vaultKeepId);
+  }
+
+  private VaultKeep GetVaultKeepById(int vaultKeepId)
+  {
+    VaultKeep vaultKeep = _repository.GetVaultKeepById(vaultKeepId);
+
+    if (vaultKeep == null)
+    {
+      throw new Exception("Error: Invalid VaultKeep Id");
+    }
+
+    return vaultKeep;
   }
 }

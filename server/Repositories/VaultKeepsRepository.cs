@@ -1,5 +1,6 @@
 
 
+
 namespace keeper.Repositories;
 
 
@@ -67,5 +68,30 @@ public class VaultKeepsRepository
     }, new { vaultId }, splitOn: "VaultKeepId,Id").ToList();
 
     return vaultKeep_Keeps;
+  }
+
+  internal VaultKeep GetVaultKeepById(int vaultKeepId)
+  {
+    string sql = "SELECT * FROM vaultkeeps WHERE id = @vaultKeepId;";
+
+    VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).FirstOrDefault();
+    return vaultKeep;
+  }
+
+  internal void DeleteKeepVault(int vaultKeepId)
+  {
+    string sql = "DELETE FROM vaultkeeps WHERE id = @vaultKeepId LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { vaultKeepId });
+
+    if (rowsAffected == 0)
+    {
+      throw new Exception("Invalid Id: No VaultKeep Found");
+    }
+
+    if (rowsAffected > 1)
+    {
+      throw new Exception("Error: More than one VaultKeep Deleted");
+    }
   }
 }

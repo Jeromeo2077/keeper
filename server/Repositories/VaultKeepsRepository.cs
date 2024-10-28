@@ -42,7 +42,7 @@ public class VaultKeepsRepository
     string sql = @"
       SELECT 
         keeps.*,
-        vaultkeeps.*,
+        vaultkeeps.id AS VaultKeepId,
         accounts.*
       FROM 
         vaultkeeps
@@ -64,7 +64,7 @@ public class VaultKeepsRepository
       vaultKeep.Kept = keep.Kept;
       vaultKeep.CreatorId = keep.CreatorId;
       return vaultKeep;
-    }, new { vaultId }).ToList();
+    }, new { vaultId }, splitOn: "VaultKeepId,Id").ToList();
 
     return vaultKeep_Keeps;
   }

@@ -10,6 +10,7 @@ public class VaultKeep
   public string CreatorId { get; set; }
   public Profile Creator { get; set; }
   public Keep Keep { get; set; }
+  public Vault Vault { get; set; }
 }
 
 public class VaultKeep_Keep : Keep

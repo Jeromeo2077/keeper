@@ -12,10 +12,7 @@ public class VaultKeep
   public Keep Keep { get; set; }
 }
 
-public class VaultKeep_Vault : Keep
+public class VaultKeep_Keep : Keep
 {
   public int VaultKeepId { get; set; }
-  public int KeepId { get; set; }
-  public int VaultId { get; set; }
-  public Keep Keep { get; set; }
 }

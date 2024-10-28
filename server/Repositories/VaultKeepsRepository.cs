@@ -47,7 +47,7 @@ public class VaultKeepsRepository
       WHERE 
         vaultkeeps.vaultId = @vaultId;";
 
-    return _db.Query<VaultKeep, Account>(sql, (VaultKeep, profile) =>
+    return _db.Query<VaultKeep, Account, VaultKeep>(sql, (VaultKeep, profile) =>
     {
       VaultKeep.Creator = profile;
       return VaultKeep;

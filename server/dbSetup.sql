@@ -42,4 +42,12 @@ CREATE TABLE vaultkeeps (
     Foreign Key (vaultId) REFERENCES vaults (id) ON DELETE CASCADE,
     Foreign Key (keepId) REFERENCES keeps (id) ON DELETE CASCADE,
     Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
-)
+);
+
+SELECT keeps.*, vaultkeeps.*, accounts.*
+FROM
+    vaultkeeps
+    JOIN keeps ON vaultkeeps.keepId = keeps.id
+    JOIN accounts ON vaultkeeps.creatorId = accounts.id
+WHERE
+    vaultkeeps.vaultId = 42;

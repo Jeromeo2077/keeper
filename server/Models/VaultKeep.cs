@@ -11,5 +11,5 @@ public class VaultKeep
   public int KeepId { get; set; }
   public string CreatorId { get; set; }
   public Profile Creator { get; set; }
-
+  public Keep Keep { get; set; }
 }

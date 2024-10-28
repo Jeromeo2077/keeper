@@ -1,3 +1,5 @@
+
+
 namespace keeper.Repositories;
 
 
@@ -35,4 +37,20 @@ public class VaultKeepsRepository
     }, new { vaultKeepCreationData.VaultId, vaultKeepCreationData.KeepId, creatorId }).FirstOrDefault();
   }
 
+  internal List<VaultKeep> GetKeepsByVaultId(int vaultId)
+  {
+    string sql = @"
+      SELECT * FROM 
+        vaultkeeps
+      JOIN 
+        accounts ON vaultkeeps.creatorId = accounts.id
+      WHERE 
+        vaultkeeps.vaultId = @vaultId;";
+
+    return _db.Query<VaultKeep, Account>(sql, (VaultKeep, profile) =>
+    {
+      VaultKeep.Creator = profile;
+      return VaultKeep;
+    }, new { vaultId }).ToList();
+  }
 }

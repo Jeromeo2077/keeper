@@ -30,6 +30,4 @@ public class VaultKeepsController : ControllerBase
       return BadRequest(exception.Message);
     }
   }
-
-
 }

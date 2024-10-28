@@ -20,7 +20,7 @@ public class VaultKeepsService
   }
 
 
-  internal List<VaultKeep> GetKeepsByVaultId(int vaultId, Account userInfo)
+  internal List<Keep> GetKeepsByVaultId(int vaultId, Account userInfo)
   {
     _vaultsService.GetVaultById(vaultId, userInfo);
 
@@ -28,7 +28,7 @@ public class VaultKeepsService
   }
 
 
-  private List<VaultKeep> GetKeepsByVaultId(int vaultId)
+  private List<Keep> GetKeepsByVaultId(int vaultId)
   {
     return _repository.GetKeepsByVaultId(vaultId);
   }

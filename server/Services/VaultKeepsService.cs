@@ -17,6 +17,11 @@ public class VaultKeepsService
   internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepCreationData, Account userInfo)
   {
     VaultKeep vaultKeep = _repository.CreateVaultKeep(vaultKeepCreationData, userInfo.Id);
+
+    if (vaultKeep.Vault.CreatorId != userInfo.Id)
+    {
+      throw new Exception("Invalid Access: You are not the creator of this Vault");
+    }
     return vaultKeep;
   }
 

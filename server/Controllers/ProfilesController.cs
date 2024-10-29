@@ -17,13 +17,27 @@ public class ProfilesController : ControllerBase
 
 
   [HttpGet("{profileId}")]
-  public async Task<ActionResult<Profile>> GetProfile(string profileId)
+  public ActionResult<Profile> GetProfile(string profileId)
+  {
+    try
+    {
+      Profile profile = _profilesService.GetProfile(profileId);
+      return Ok(profile);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+  [HttpGet("{profileId}/keeps")]
+  public async Task<ActionResult<List<Keep>>> GetKeepsByProfile(string profileId)
   {
     try
     {
       Account account = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      Profile profile = _profilesService.GetProfile(profileId, account);
-      return Ok(profile);
+      List<Keep> keeps = _profilesService.GetKeepsByProfile(profileId, account);
+      return Ok(keeps);
     }
     catch (Exception exception)
     {

@@ -1,27 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
-
-const theme = ref(loadState('theme') || 'light')
-
-onMounted(() => {
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-})
-
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}
-
 </script>
 
 <template>
   <nav class="navbar navbar-expand-sm bg-light px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+    <router-link class="navbar-brand" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <button type="button" class="btn btn-info btn-small d-flex gap-3">
+        <button type="button" class="btn btn-info btn-small d-flex gap-3" aria-label="HomePage">
           <Icon name="home" />
           <span>Home</span>
         </button>
@@ -42,19 +27,9 @@ function toggleTheme() {
       <!-- </ul> -->
     </div>
 
-    <!-- <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li> -->
-    <!-- LOGIN COMPONENT HERE -->
     <div>
-      <!-- <button class="btn text-light" @click="toggleTheme"
-        :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-        <Icon :name="theme == 'light' ? 'weather-sunny' : 'weather-night'" />
-      </button> -->
+      <Login />
     </div>
-    <Login />
   </nav>
   <hr class="hr-shadow my-4">
 </template>
@@ -77,6 +52,14 @@ a:hover {
 .selector {
   width: 20%;
   outline: none !important;
+  box-shadow: none !important;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  appearance: none;
 }
 
 .hr-shadow {

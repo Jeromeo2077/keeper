@@ -26,7 +26,7 @@ public class KeepsRepository
         accounts ON keeps.creatorId = accounts.id
       WHERE keeps.id = LAST_INSERT_ID();";
 
-    return _db.Query<Keep, Account, Keep>(sql, (keep, profile) =>
+    return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
     {
       keep.Creator = profile;
       return keep;

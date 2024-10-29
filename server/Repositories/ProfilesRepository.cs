@@ -14,9 +14,18 @@ public class ProfilesRepository
 
   internal Profile GetProfile(string profileId)
   {
-    string sql = "SELECT * FROM profiles WHERE id = @profileId";
+    string sql = @"
+    SELECT
+      id,
+      createdAt,
+      updatedAt,
+      name,
+      picture
+    FROM 
+      accounts 
+    WHERE id = @profileId;";
 
-    return _db.QueryFirstOrDefault<Profile>(sql, new { profileId });
+    return _db.Query<Profile>(sql, new { profileId }).FirstOrDefault();
   }
 }
 

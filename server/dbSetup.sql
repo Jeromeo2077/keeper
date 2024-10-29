@@ -51,3 +51,11 @@ FROM
     JOIN accounts ON vaultkeeps.creatorId = accounts.id
 WHERE
     vaultkeeps.vaultId = 94;
+
+SELECT
+    id,
+    createdAt,
+    updatedAt,
+    name,
+    picture
+FROM accounts;

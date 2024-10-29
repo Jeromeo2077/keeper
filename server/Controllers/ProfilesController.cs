@@ -30,6 +30,7 @@ public class ProfilesController : ControllerBase
     }
   }
 
+
   [HttpGet("{profileId}/keeps")]
   public async Task<ActionResult<List<Keep>>> GetKeepsByProfile(string profileId)
   {
@@ -38,6 +39,22 @@ public class ProfilesController : ControllerBase
       Account account = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       List<Keep> keeps = _profilesService.GetKeepsByProfile(profileId, account);
       return Ok(keeps);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+
+  [HttpGet("{profileId}/vaults")]
+  public async Task<ActionResult<List<Vault>>> GetVaultsByProfile(string profileId)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<Vault> vaults = _profilesService.GetVaultsByProfile(profileId, userInfo);
+      return Ok(vaults);
     }
     catch (Exception exception)
     {

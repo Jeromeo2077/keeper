@@ -43,5 +43,22 @@ public class ProfilesService
 
     return keeps;
   }
+
+  internal List<Vault> GetVaultsByProfile(string profileId, Account account)
+  {
+    List<Vault> vaults = _profilesRepository.GetVaultsByProfile(profileId, account);
+
+    if (vaults == null)
+    {
+      throw new Exception("Profile has no Vaults");
+    }
+
+    if (profileId == null)
+    {
+      throw new Exception("Error: Invalid Profile Id");
+    }
+
+    return vaults;
+  }
 }
 

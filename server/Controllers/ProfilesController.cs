@@ -52,7 +52,7 @@ public class ProfilesController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       List<Vault> vaults = _profilesService.GetVaultsByProfile(profileId, userInfo);
       return Ok(vaults);
     }

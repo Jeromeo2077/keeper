@@ -50,7 +50,7 @@ public class ProfilesRepository
     }, new { profileId }).ToList();
   }
 
-  internal List<Vault> GetVaultsByProfile(string profileId, Account account)
+  internal List<Vault> GetVaultsByProfile(string profileId)
   {
     string sql = @"
     SELECT

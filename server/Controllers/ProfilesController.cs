@@ -36,7 +36,7 @@ public class ProfilesController : ControllerBase
   {
     try
     {
-      Account account = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account account = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       List<Keep> keeps = _profilesService.GetKeepsByProfile(profileId, account);
       return Ok(keeps);
     }

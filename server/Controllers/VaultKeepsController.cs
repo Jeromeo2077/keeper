@@ -21,7 +21,7 @@ public class VaultKeepsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepCreationData, userInfo);
       return Ok(vaultKeep);
     }
@@ -38,7 +38,7 @@ public class VaultKeepsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       _vaultKeepsService.DeleteKeepVault(vaultKeepId, userInfo);
       return Ok("You are no longer following this Keep");
     }

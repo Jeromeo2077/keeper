@@ -22,7 +22,7 @@ public class VaultsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       Vault vault = _vaultsService.CreateVault(vaultCreationData, userInfo);
       return Ok(vault);
     }
@@ -37,7 +37,7 @@ public class VaultsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       Vault vault = _vaultsService.GetVaultById(vaultId, userInfo);
       return Ok(vault);
     }
@@ -53,7 +53,7 @@ public class VaultsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       Vault vault = _vaultsService.UpdateVaultById(vaultUpdateData, vaultId, userInfo);
       return Ok(vault);
     }
@@ -70,7 +70,7 @@ public class VaultsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       String message = _vaultsService.DeleteVaultById(vaultId, userInfo);
       return Ok(message);
     }
@@ -85,7 +85,7 @@ public class VaultsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       List<VaultKeep_Keep> keeps = _vaultKeepsService.GetKeepsByVaultId(vaultId, userInfo);
       return Ok(keeps);
     }

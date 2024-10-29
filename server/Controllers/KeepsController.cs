@@ -20,7 +20,7 @@ public class KeepsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       Keep keep = _keepsService.CreateKeep(keepCreationData, userInfo);
       return Ok(keep);
     }
@@ -72,7 +72,7 @@ public class KeepsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       Keep keep = _keepsService.UpdateKeepById(keepUpdateData, keepId, userInfo);
       return Ok(keep);
     }
@@ -88,7 +88,7 @@ public class KeepsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext) ?? new Account();
       String message = _keepsService.DeleteKeepById(keepId, userInfo);
       return Ok(message);
     }

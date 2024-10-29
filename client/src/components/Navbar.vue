@@ -71,7 +71,7 @@ a:hover {
 }
 
 .hr-shadow {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 @media screen and (min-width: 576px) {

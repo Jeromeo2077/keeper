@@ -1,4 +1,5 @@
 <script setup>
+import Icon from './globals/Icon.vue';
 import Login from './Login.vue';
 </script>
 
@@ -13,10 +14,11 @@ import Login from './Login.vue';
       </div>
     </router-link>
 
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button> -->
+    </button>
+
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- <ul class="navbar-nav me-auto"> -->
       <select class="form-select form-select-sm selector" aria-label="Create Selector">
@@ -25,6 +27,12 @@ import Login from './Login.vue';
         <option value="2">New Keep</option>
       </select>
       <!-- </ul> -->
+    </div>
+    <div>
+      <div class="d-flex justify-content-center flex-grow-1">
+        <Icon class="fs-3" name="shield" />
+        <h1 class="px-2">Keeper</h1>
+      </div>
     </div>
 
     <div>
@@ -50,7 +58,7 @@ a:hover {
 }
 
 .selector {
-  width: 20%;
+  width: 100px;
   outline: none !important;
   box-shadow: none !important;
   border: none;

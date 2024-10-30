@@ -1,4 +1,23 @@
 <script setup>
+import Pop from '@/utils/Pop.js';
+import { logger } from '@/utils/Logger.js';
+import { onMounted } from 'vue';
+import { vaultsService } from '@/services/VaultsService.js';
+
+onMounted(() => {
+  getAllVaults();
+});
+
+
+async function getAllVaults() {
+  try {
+    await vaultsService.getAllVaults();
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.error(error);
+  }
+}
 
 </script>
 

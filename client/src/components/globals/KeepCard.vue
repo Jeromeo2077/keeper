@@ -1,6 +1,5 @@
 <script setup>
 import { Keep } from '@/models/Keep.js';
-import { Profile } from '@/models/Profile.js';
 import ProfilePicture from './ProfilePicture.vue';
 
 

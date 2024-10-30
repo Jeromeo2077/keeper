@@ -9,15 +9,31 @@ defineProps({ keep: { type: Keep, required: true } });
 
 
 <template>
-  <!-- <RouterLink :to="{ name: 'KeepDetails', params: { keepId: keep.id } }" :title="`Check out the ${keep.name} details!`"> -->
-  <div class="keep-card">
-    <img :src="keep.img" :alt="keep.name" class="img-fluid keep-img rounded border border-3 shadow" />
+  <div class="keep-card btn" data-bs-toggle="modal" data-bs-target="#KeepDetails">
+    <img :src="keep.img" :alt="keep.name" class="img-fluid keep-img rounded border border-3 shadow">
     <h3>{{ keep.name }}</h3>
     <span>
       <ProfilePicture :profile="keep.creator" />
     </span>
   </div>
-  <!-- </RouterLink> -->
+
+  <div class="modal fade" id="KeepDetails" tabindex="-1" aria-labelledby="Keep Details" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -43,6 +59,7 @@ span {
   break-inside: avoid;
   border-radius: 10px;
   margin: 5px;
+  padding: 0;
 }
 
 .keep-img {

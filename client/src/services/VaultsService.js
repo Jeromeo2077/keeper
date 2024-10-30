@@ -8,7 +8,7 @@ class VaultsService {
 
 
     async getAllVaults() {
-      const response = await api.get('/vaults');  
+      const response = await api.get('/vaults');
       const vaults = response.data.map(vaultPojo => new Vault(vaultPojo));
       logger.log(response.data)
       AppState.vaults = vaults;

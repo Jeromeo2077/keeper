@@ -29,7 +29,7 @@ async function getAllKeeps() {
 </script>
 
 <template>
-  <div class="container background-color masonry-grid">
+  <div class="container background-color masonry-grid p-0">
     <div class="row">
       <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4">
         <KeepCard :keep="keep" />

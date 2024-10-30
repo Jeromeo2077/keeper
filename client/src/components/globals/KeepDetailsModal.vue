@@ -13,20 +13,20 @@ const activeKeep = computed(() => {
 
 <template>
 
-  <div class="modal fade" id="KeepDetailsModal" tabindex="-1" aria-labelledby="Keep Details" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade" id="KeepDetailsModal" tabindex="-1" aria-labelledby="KeepDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div v-if="activeKeep" class="modal-content">
-        <div class="modal-header">
-          <div>
-            <img :src="activeKeep.img" :alt="activeKeep.name" class="img-fluid rounded border border-3 shadow">
-          </div>
-          <div>
-            <h1 class="modal-title fs-5" id="active_keep_name">{{ activeKeep.name }}</h1>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
         <div class="modal-body">
-          ...
+          <div class="row">
+            <div class="col-md-6">
+              <img :src="activeKeep.img" :alt="activeKeep.name" class="img-fluid rounded border border-3 shadow">
+            </div>
+            <div class="col-md-6">
+              <h5>{{ activeKeep.name }}</h5>
+              <p>{{ activeKeep.description }}</p>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -38,4 +38,25 @@ const activeKeep = computed(() => {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-body {
+  display: flex;
+  align-items: center;
+  padding: 1;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-title {
+  margin-bottom: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

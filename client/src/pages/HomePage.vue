@@ -4,6 +4,7 @@ import { logger } from '@/utils/Logger.js';
 import { computed, onMounted } from 'vue';
 import { AppState } from '@/AppState.js';
 import { keepsService } from '@/services/KeepsService.js';
+import KeepCard from '@/components/globals/KeepCard.vue';
 
 
 const keeps = computed(() => {
@@ -28,10 +29,10 @@ async function getAllKeeps() {
 </script>
 
 <template>
-  <div class="container background-color">
+  <div class="container background-color masonry-grid">
     <div class="row">
       <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4">
-        <h1>{{ keeps }}</h1>
+        <KeepCard :keep="keep" />
       </div>
     </div>
   </div>
@@ -41,5 +42,12 @@ async function getAllKeeps() {
 <style scoped lang="scss">
 .background-color {
   background-color: #f8f9fa;
+}
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+  grid-template-rows: masonry;
+  gap: 10px;
 }
 </style>

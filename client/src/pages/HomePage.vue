@@ -4,14 +4,14 @@ import { logger } from '@/utils/Logger.js';
 import { onMounted } from 'vue';
 import { vaultsService } from '@/services/VaultsService.js';
 
-onMounted(() => {
-  getAllVaults();
+const keeps = onMounted(() => {
+  getAllKeeps();
 });
 
 
-async function getAllVaults() {
+async function getAllKeeps() {
   try {
-    await vaultsService.getAllVaults();
+    await vaultsService.getAllKeeps();
   }
   catch (error) {
     Pop.error(error);
@@ -25,7 +25,7 @@ async function getAllVaults() {
   <div class="container background-color">
     <div class="row">
       <div class="col-12">
-        <h1>Home Page</h1>
+        <h1>{{ keeps }}</h1>
       </div>
     </div>
   </div>

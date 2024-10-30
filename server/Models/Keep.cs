@@ -26,6 +26,7 @@ public class Keep
 
   public string CreatorId { get; set; }
   public Profile Creator { get; set; }
+  public Vault Vault { get; set; }
 }
 
 

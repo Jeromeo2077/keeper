@@ -1,17 +1,17 @@
 import { AppState } from "@/AppState.js";
 import { api } from "./AxiosService.js";
-import { Vault } from "@/models/Vault.js";
 import { logger } from "@/utils/Logger.js";
+import { Keep } from "@/models/Keep.js";
 
 
 class VaultsService {
 
 
-    async getAllVaults() {
-      const response = await api.get('/vaults');
-      const vaults = response.data.map(vaultPojo => new Vault(vaultPojo));
+    async getAllKeeps() {
+      const response = await api.get('api/keeps');
+      const keeps = response.data.map(keepPojo => new Keep(keepPojo));
       logger.log(response.data)
-      AppState.vaults = vaults;
+      AppState.keeps = keeps;
     }
     }
 

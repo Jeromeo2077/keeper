@@ -28,6 +28,7 @@ namespace keeper.Models
     public bool IsPrivate { get; set; } = false;
     public string CreatorId { get; set; }
     public Profile Creator { get; set; }
+    public List<VaultKeep> VaultKeeps { get; set; }
   }
 
   public class VaultCreationDTO

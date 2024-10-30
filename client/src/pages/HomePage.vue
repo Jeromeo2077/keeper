@@ -1,17 +1,23 @@
 <script setup>
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
-import { onMounted } from 'vue';
-import { vaultsService } from '@/services/VaultsService.js';
+import { computed, onMounted } from 'vue';
+import { AppState } from '@/AppState.js';
+import { keepsService } from '@/services/KeepsService.js';
 
-const keeps = onMounted(() => {
+
+const keeps = computed(() => {
+  return AppState.keeps;
+});
+
+onMounted(() => {
   getAllKeeps();
 });
 
 
 async function getAllKeeps() {
   try {
-    await vaultsService.getAllKeeps();
+    await keepsService.getAllKeeps();
   }
   catch (error) {
     Pop.error(error);
@@ -24,7 +30,7 @@ async function getAllKeeps() {
 <template>
   <div class="container background-color">
     <div class="row">
-      <div class="col-12">
+      <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4">
         <h1>{{ keeps }}</h1>
       </div>
     </div>

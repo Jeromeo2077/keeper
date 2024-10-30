@@ -1,4 +1,3 @@
-
 namespace keeper.Repositories;
 
 
@@ -35,6 +34,16 @@ public class VaultsRepository
     }, new { vaultCreationData.Name, vaultCreationData.Description, vaultCreationData.Img, vaultCreationData.IsPrivate, creatorId }).FirstOrDefault();
   }
 
+  internal List<Vault> GetAllVaults()
+  {
+    string sql = "Select * FROM vaults;";
+
+    return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }).ToList();
+  }
 
   internal Vault GetVaultById(int vaultId)
   {
@@ -54,6 +63,9 @@ public class VaultsRepository
       return vault;
     }, new { vaultId }).FirstOrDefault();
   }
+
+
+
 
   internal Vault UpdateVaultById(Vault vault, int vaultId)
   {
@@ -98,4 +110,5 @@ public class VaultsRepository
       throw new Exception("Error: More than one Vault Deleted");
     }
   }
+
 }

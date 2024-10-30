@@ -1,3 +1,4 @@
+
 namespace keeper.Services;
 
 public class VaultsService
@@ -13,6 +14,20 @@ public class VaultsService
     Vault vault = _repository.CreateVault(vaultCreationData, userInfo.Id);
     return vault;
   }
+
+  internal List<Vault> GetAllVaults()
+  {
+    List<Vault> vaults = _repository.GetAllVaults();
+
+    if (vaults == null || vaults.Count == 0)
+    {
+      throw new Exception("No Vaults Found");
+    }
+
+    vaults = vaults.FindAll(vault => vault.IsPrivate == false);
+    return vaults;
+  }
+
 
   internal Vault GetVaultById(int vaultId, Account userInfo)
   {
@@ -61,4 +76,5 @@ public class VaultsService
     _repository.DeleteVaultById(vaultId);
     return $"Vault {vault.Name} has been successfully deleted";
   }
+
 }

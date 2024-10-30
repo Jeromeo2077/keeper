@@ -59,3 +59,5 @@ SELECT
     name,
     picture
 FROM accounts;
+
+Select * FROM vaults;

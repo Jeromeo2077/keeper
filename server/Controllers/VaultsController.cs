@@ -32,6 +32,21 @@ public class VaultsController : ControllerBase
     }
   }
 
+
+  [HttpGet]
+  public ActionResult<List<Vault>> GetAllVaults()
+  {
+    try
+    {
+      List<Vault> vaults = _vaultsService.GetAllVaults();
+      return Ok(vaults);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
   [HttpGet("{vaultId}")]
   public async Task<ActionResult<Vault>> GetVaultById(int vaultId)
   {

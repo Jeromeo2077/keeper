@@ -1,15 +1,37 @@
 <script setup>
 import { Keep } from '@/models/Keep.js';
 import ProfilePicture from './ProfilePicture.vue';
+import { computed, onMounted } from 'vue';
+import { AppState } from '@/AppState.js';
+import { keepsService } from '@/services/KeepsService.js';
+import { useRoute } from 'vue-router';
+import Pop from '@/utils/Pop.js';
+import { logger } from '@/utils/Logger.js';
+
+
+const activeKeep = computed(() => {
+  return AppState.activeKeep;
+});
 
 
 defineProps({ keep: { type: Keep, required: true } });
+
+async function getKeepDetailsById(keepId) {
+  try {
+    await keepsService.getKeepDetailsById(keepId);
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.error(error);
+  }
+}
 
 </script>
 
 
 <template>
-  <div class="keep-card btn" data-bs-toggle="modal" data-bs-target="#KeepDetails">
+  <div type="button" class="keep-card btn" @click="getKeepDetailsById(keep.id)" data-bs-toggle="modal"
+    data-bs-target="#KeepDetails">
     <img :src="keep.img" :alt="keep.name" class="img-fluid keep-img rounded border border-3 shadow">
     <h3>{{ keep.name }}</h3>
     <span>
@@ -21,7 +43,7 @@ defineProps({ keep: { type: Keep, required: true } });
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Keep Name</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

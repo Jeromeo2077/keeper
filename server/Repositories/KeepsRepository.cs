@@ -139,4 +139,24 @@ public class KeepsRepository
       throw new Exception("Error: More than one Keep Deleted");
     }
   }
+
+
+  internal List<Keep> GetKeepsByAccountId(Account userInfo)
+  {
+    string sql = @"
+      SELECT
+        keeps.*,
+        accounts.*
+      FROM
+        keeps
+      JOIN
+        accounts ON keeps.creatorId = accounts.id
+      WHERE keeps.creatorId = @Id;";
+
+    return _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
+    {
+      keep.Creator = account;
+      return keep;
+    }, userInfo).ToList();
+  }
 }

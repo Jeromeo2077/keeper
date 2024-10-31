@@ -85,4 +85,17 @@ public class KeepsService
     _repository.DeleteKeepById(keepId);
     return $"Keep {keep.Name} has been successfully deleted";
   }
+
+  internal List<Keep> KeepsByAccountId(Account userInfo)
+  {
+    List<Keep> keeps = _repository.GetKeepsByAccountId(userInfo);
+    keeps = keeps.FindAll(keep => keep.CreatorId == userInfo.Id);
+
+    if (keeps == null)
+    {
+      throw new Exception("No Vaults Found");
+    }
+
+    return keeps;
+  }
 }

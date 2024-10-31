@@ -1,8 +1,8 @@
 .
 <script setup>
 import { AppState } from '@/AppState.js';
+import { Keep } from '@/models/Keep.js';
 import { computed } from 'vue';
-
 
 const activeKeep = computed(() => {
   return AppState.activeKeep;
@@ -23,14 +23,21 @@ const activeKeep = computed(() => {
               <img :src="activeKeep.img" :alt="activeKeep.name" class="img-fluid rounded border border-3 shadow">
             </div>
             <div class="col-md-6">
-              <h5>{{ activeKeep.name }}</h5>
+              <div>
+                <i class="mdi mdi-eye p-3">&nbsp; {{ activeKeep.views }} </i>
+                <i class="mdi mdi-lock p-3">&nbsp; {{ activeKeep.kept }} </i>
+              </div>
+              <h3 class="mt-3">{{ activeKeep.name }}</h3>
               <p>{{ activeKeep.description }}</p>
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <span>
+            <ProfilePicture :profile="activeKeep.creator" />
+          </span>
         </div>
       </div>
     </div>

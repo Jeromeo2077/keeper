@@ -4,6 +4,9 @@ import { Vault } from "@/models/Vault.js";
 import { AppState } from "@/AppState.js";
 
 class VaultsService {
+  getVaultDetailsById(keepId) {
+    throw new Error('Method not implemented.');
+  }
 
 
   async getVaultsByAccountId(accountId) {

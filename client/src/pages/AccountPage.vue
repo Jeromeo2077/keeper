@@ -7,7 +7,7 @@ import { keepsService } from '@/services/KeepsService.js';
 // import KeepCard from '@/components/KeepCard.vue';
 
 const account = computed(() => AppState.account);
-const vaults = computed(() => AppState.vaults);
+const vaults = computed(() => AppState.accountVaults);
 const keeps = computed(() => AppState.keeps);
 
 onMounted(async () => {
@@ -17,9 +17,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="account-page">
+  <div class="container account-page">
 
-    <div class="cover-image">
+    <div class="cover-img">
       <img :src="account.coverImg" alt="Cover Image" class="img-fluid">
       <div class="profile-picture">
         <img :src="account.picture" alt="Profile Picture" class="rounded-circle">
@@ -60,7 +60,7 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .account-page {
-  .cover-image {
+  .cover-img {
     position: relative;
 
     img {

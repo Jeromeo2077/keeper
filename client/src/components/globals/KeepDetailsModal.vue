@@ -1,7 +1,6 @@
 .
 <script setup>
 import { AppState } from '@/AppState.js';
-import { Keep } from '@/models/Keep.js';
 import { computed } from 'vue';
 
 const activeKeep = computed(() => {

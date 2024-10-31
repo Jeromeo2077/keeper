@@ -1,5 +1,3 @@
-
-
 namespace keeper.Services;
 
 public class VaultKeepsService

@@ -29,11 +29,12 @@ public class AccountService
     return account;
   }
 
-  internal Account Edit(Account editData, string accountId)
+  internal Account EditAccount(Account editAccountData, string accountId)
   {
     Account original = GetAccount(accountId);
-    original.Name = editData.Name ?? editData.Name;
-    original.Picture = editData.Picture ?? editData.Picture;
+    original.Name = editAccountData.Name ?? editAccountData.Name;
+    original.Picture = editAccountData.Picture ?? editAccountData.Picture;
+    original.CoverImg = editAccountData.CoverImg ?? editAccountData.CoverImg;
     return _repo.Edit(original);
   }
 }

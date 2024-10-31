@@ -61,3 +61,5 @@ SELECT
 FROM accounts;
 
 Select * FROM vaults;
+
+ALTER TABLE accounts ADD COLUMN coverImg VARCHAR(1000)

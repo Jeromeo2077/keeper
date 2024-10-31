@@ -98,4 +98,23 @@ public class VaultsRepository
       throw new Exception("Error: More than one Vault Deleted");
     }
   }
+
+  internal List<Vault> GetVaultsByAccountId(Account userInfo)
+  {
+    string sql = @"
+      SELECT
+        vaults.*,
+        accounts.*
+      FROM
+        vaults
+      JOIN
+        accounts ON vaults.creatorId = accounts.id
+      WHERE vaults.creatorId = @Id;";
+
+    return _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
+    {
+      vault.Creator = account;
+      return vault;
+    }, userInfo).ToList();
+  }
 }

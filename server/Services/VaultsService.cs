@@ -64,4 +64,19 @@ public class VaultsService
     _repository.DeleteVaultById(vaultId);
     return $"Vault {vault.Name} has been successfully deleted";
   }
+
+
+  internal List<Vault> GetVaultsByAccountId(Account userInfo)
+  {
+    List<Vault> vaults = _repository.GetVaultsByAccountId(userInfo);
+    vaults = vaults.FindAll(vault => vault.CreatorId == userInfo.Id);
+
+    if (vaults == null)
+    {
+      throw new Exception("No Vaults Found");
+    }
+
+    return vaults;
+
+  }
 }

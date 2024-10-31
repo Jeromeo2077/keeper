@@ -12,7 +12,7 @@ const keeps = computed(() => AppState.keeps);
 
 onMounted(async () => {
   await vaultsService.getVaultsByAccountId(account.value.id);
-  // await keepsService.getKeepsByAccountId(account.value.id);
+  await keepsService.getKeepsByAccountId(account.value.id);
 });
 </script>
 

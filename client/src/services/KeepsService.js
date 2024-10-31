@@ -3,6 +3,12 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService{
+
+  async getKeepsByAccountId(accountId) {
+    const response = await api.get(`/account/keeps`);
+    const keeps = response.data.map(keepPojo => new Keep(keepPojo));
+    AppState.accountKeeps = keeps;
+  }
   
   async getAllKeeps() {
     const response = await api.get('api/keeps');

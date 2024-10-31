@@ -8,9 +8,9 @@ import { vaultsService } from '@/services/VaultsService.js';
 
 defineProps({ vault: { type: Vault, required: true } });
 
-async function getVaultDetailsById(keepId) {
+async function getVaultDetailsById() {
   try {
-    await vaultsService.getVaultDetailsById(keepId);
+    // await vaultsService.getVaultDetailsById(vault.id);
   }
   catch (error) {
     Pop.error(error);
@@ -22,7 +22,7 @@ async function getVaultDetailsById(keepId) {
 
 
 <template>
-  <div type="button" class="keep-card btn" @click="getVaultDetailsById(vault.id)" data-bs-toggle="modal"
+  <div type="button" class="keep-card btn" @click="getVaultDetailsById()" data-bs-toggle="modal"
     data-bs-target="#VaultDetailsModal">
     <img :src="vault.img" :alt="vault.name" class="img-fluid keep-img rounded border border-3 shadow">
     <h3>{{ vault.name }}</h3>

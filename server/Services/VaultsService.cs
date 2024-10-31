@@ -77,6 +77,5 @@ public class VaultsService
     }
 
     return vaults;
-
   }
 }

@@ -1,5 +1,7 @@
 import { reactive } from 'vue'
+// eslint-disable-next-line no-unused-vars
 import { Keep } from './models/Keep.js'
+// eslint-disable-next-line no-unused-vars
 import { Vault } from './models/Vault.js'
 
 
@@ -17,6 +19,6 @@ export const AppState = reactive({
   activeKeep: null,
 
   /** @type {Vault[]} */
-  vaults: [],
+  accountVaults: [],
 })
 

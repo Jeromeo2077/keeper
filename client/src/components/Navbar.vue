@@ -1,7 +1,10 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import Icon from './globals/Icon.vue';
 import Login from './Login.vue';
+import { computed } from 'vue';
 
+const account = computed(() => AppState.account);
 
 
 </script>
@@ -24,10 +27,12 @@ import Login from './Login.vue';
 
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- <ul class="navbar-nav me-auto"> -->
-      <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#NewVaultModal">New
+      <button v-if="account" type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
+        data-bs-target="#NewVaultModal">New
         Vault</button>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewKeepModal">New
+      <button v-if="account" type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#NewKeepModal">New
         Keep</button>
 
 

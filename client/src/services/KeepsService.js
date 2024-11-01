@@ -3,10 +3,15 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService{
+  async deleteKeep(keepId) {
+    await api.delete('api/keeps/' + keepId);
+    AppState.keeps = AppState.keeps.filter(keep => keep.id !== keepId);
+    AppState.accountKeeps = AppState.accountKeeps.filter(keep => keep.id !== keepId);
+  }
 
   async getKeepsByAccountId(accountId) {
     AppState.accountKeeps = []
-    const response = await api.get(`/account/keeps`);
+    const response = await api.get(`api/account/keeps`);
     const keeps = response.data.map(keepPojo => new Keep(keepPojo));
     AppState.accountKeeps = keeps;
   }

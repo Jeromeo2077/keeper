@@ -5,6 +5,7 @@ import { AppState } from "@/AppState.js";
 class KeepsService{
 
   async getKeepsByAccountId(accountId) {
+    AppState.accountKeeps = []
     const response = await api.get(`/account/keeps`);
     const keeps = response.data.map(keepPojo => new Keep(keepPojo));
     AppState.accountKeeps = keeps;

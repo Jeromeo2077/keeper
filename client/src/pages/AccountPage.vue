@@ -8,7 +8,7 @@ import { keepsService } from '@/services/KeepsService.js';
 
 const account = computed(() => AppState.account);
 const vaults = computed(() => AppState.accountVaults);
-const keeps = computed(() => AppState.keeps);
+const keeps = computed(() => AppState.accountKeeps);
 
 onMounted(async () => {
   await vaultsService.getVaultsByAccountId(account.value.id);
@@ -33,6 +33,7 @@ onMounted(async () => {
 
     <div class="vaults-section">
       <h2>Your Vaults</h2>
+
       <div v-if="vaults.length" class="row">
         <div v-for="vault in vaults" :key="vault.id" class="col-12 col-md-4 mb-4">
           <VaultCard :vault="vault" />

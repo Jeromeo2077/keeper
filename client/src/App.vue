@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
-import { AppState } from './AppState.js';
+import NewKeepModal from './components/globals/NewKeepModal.vue';
+import NewVaultModal from './components/globals/NewVaultModal.vue';
 
 </script>
 
@@ -13,6 +14,8 @@ import { AppState } from './AppState.js';
   </main>
   <footer class="bg-dark text-light">
   </footer>
+  <NewKeepModal />
+  <NewVaultModal />
 </template>
 
 <style lang="scss">

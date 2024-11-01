@@ -6,10 +6,11 @@ import { logger } from '@/utils/Logger.js';
 
 const keepName = ref('');
 const keepDescription = ref('');
+const keepImage = ref('');
 
 async function createKeep() {
   try {
-    await keepsService.createKeep({ name: keepName.value, description: keepDescription.value });
+    await keepsService.createKeep({ name: keepName.value, description: keepDescription.value, image: keepImage.value });
     Pop.success('Keep created successfully');
     // Optionally, you can reset the form fields or close the modal
   } catch (error) {
@@ -36,8 +37,12 @@ async function createKeep() {
               <input type="text" class="form-control" id="keepName" v-model="keepName" required>
             </div>
             <div class="mb-3">
-              <label for="keepDescription" class="form-label">Description</label>
+              <label for="keepDescription" class="form-label">Keep Description</label>
               <textarea class="form-control" id="keepDescription" v-model="keepDescription" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="keepImage" class="form-label">Keep Imageg</label>
+              <textarea class="form-control" id="keepImage" v-model="keepImage" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create Keep</button>
           </form>

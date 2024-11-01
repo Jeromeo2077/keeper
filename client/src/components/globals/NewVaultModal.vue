@@ -6,10 +6,11 @@ import { logger } from '@/utils/Logger.js';
 
 const vaultName = ref('');
 const vaultDescription = ref('');
+const vaultImage = ref('');
 
 async function createVault() {
   try {
-    await vaultsService.createVault({ name: vaultName.value, description: vaultDescription.value });
+    await vaultsService.createVault({ name: vaultName.value, description: vaultDescription.value, image: vaultImage.value });
     Pop.success('Vault created successfully');
     // Optionally, you can reset the form fields or close the modal
   } catch (error) {
@@ -35,8 +36,12 @@ async function createVault() {
               <input type="text" class="form-control" id="vaultName" v-model="vaultName" required>
             </div>
             <div class="mb-3">
-              <label for="vaultDescription" class="form-label">Description</label>
+              <label for="vaultDescription" class="form-label">Vault Description</label>
               <textarea class="form-control" id="vaultDescription" v-model="vaultDescription" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="vaultImage" class="form-label">Vault Image</label>
+              <textarea class="form-control" id="vaultImage" v-model="vaultImage" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create Vault</button>
           </form>

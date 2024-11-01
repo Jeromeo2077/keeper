@@ -31,7 +31,7 @@ async function getVaultDetailsById() {
   catch (error) {
     Pop.error(error);
     logger.error(error);
-    if (error.response.data == "Access Error: You are not the creator of this vault!") {
+    if (error.response.data == "Error: This Vault is Private") {
       router.push({ name: 'Home' })
     }
   }

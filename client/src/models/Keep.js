@@ -1,5 +1,4 @@
 import { Profile } from "./Profile.js"
-import { Vault } from "./Vault.js"
 
 export class Keep {
     constructor(data) {

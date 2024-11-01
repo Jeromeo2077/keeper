@@ -28,6 +28,7 @@ async function createVaultKeep() {
 
     editableVaultKeepData.value.keepId = activeKeep.value.id
     await vaultKeepsService.createVaultKeep(editableVaultKeepData.value);
+    Pop.success(`Keep added to Vault successfully`);
     editableVaultKeepData.value = {
       vaultId: 0,
       keepId: 0

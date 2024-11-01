@@ -29,6 +29,8 @@ onMounted(async () => {
     <div class="account-info text-center">
       <h1>{{ account.name }}</h1>
       <p>{{ account.email }}</p>
+      <p class="m-0 p-0">Vaults: {{ vaults.length }}</p>
+      <p class="m-0 p-0">Keeps: {{ keeps.length }}</p>
     </div>
 
     <div class="vaults-section">

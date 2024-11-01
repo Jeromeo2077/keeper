@@ -1,5 +1,7 @@
-export class Keep{
-    constructor(data){
+import { Profile } from "./Profile.js"
+
+export class Keep {
+    constructor(data) {
         this.id = data.id
         this.name = data.name
         this.description = data.description
@@ -7,6 +9,7 @@ export class Keep{
         this.views = data.views
         this.kept = data.kept
         this.creatorId = data.creatorId
-        this.creator = data.creator
-        this.vault = data.vault}
+        this.creator = new Profile(data.creator)
+        this.vault = data.vault
+    }
 }

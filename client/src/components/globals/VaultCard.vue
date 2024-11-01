@@ -4,6 +4,7 @@ import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
 import { Vault } from '@/models/Vault.js';
 import { vaultsService } from '@/services/VaultsService.js';
+import { keepsService } from '@/services/KeepsService.js';
 
 defineProps({ vault: { type: Vault, required: true } });
 
@@ -17,12 +18,26 @@ async function getVaultDetailsById() {
   }
 }
 
+async function deleteVault(vaultId) {
+  try {
+    await vaultsService.deleteVault(vaultId);
+    Pop.success('Vault deleted successfully');
+  } catch (error) {
+    Pop.error(error);
+    logger.error(error);
+  }
+}
+
+
 </script>
 
 
 <template>
   <RouterLink :to="{ name: 'VaultDetails', params: { vaultId: vault.id } }">
     <div class="keep-card">
+      <button type="button" class="btn btn-danger delete-button" @click.stop="deleteVault(vault.id)">
+        <i class="mdi mdi-delete"></i>
+      </button>
       <img :src="vault.img" :alt="vault.name" class="img-fluid keep-img rounded border border-3 shadow">
       <h3>{{ vault.name }}</h3>
       <span>
@@ -62,5 +77,12 @@ span {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
 }
 </style>

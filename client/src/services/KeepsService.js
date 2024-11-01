@@ -3,6 +3,7 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService{
+
   async deleteKeep(keepId) {
     await api.delete('api/keeps/' + keepId);
     AppState.keeps = AppState.keeps.filter(keep => keep.id !== keepId);

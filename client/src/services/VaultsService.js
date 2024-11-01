@@ -1,9 +1,13 @@
 import { api } from "./AxiosService.js";
 import { Vault } from "@/models/Vault.js";
 import { AppState } from "@/AppState.js";
-import App from "@/App.vue";
 
 class VaultsService {
+
+ async deleteVault(vaultId) {
+    await api.delete('api/vaults/' + vaultId);
+    AppState.accountVaults = AppState.accountVaults.filter(vault => vault.id !== vaultId);
+  }
 
   async getVaultsByAccountId(accountId) {
     AppState.accountVaults = []

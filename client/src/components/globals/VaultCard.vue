@@ -2,7 +2,6 @@
 import ProfilePicture from './ProfilePicture.vue';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
-import KeepDetailsModal from './KeepDetailsModal.vue';
 import { Vault } from '@/models/Vault.js';
 import { vaultsService } from '@/services/VaultsService.js';
 

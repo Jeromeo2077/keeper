@@ -1,5 +1,6 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
+import KeepDetailsModal from './components/globals/KeepDetailsModal.vue';
 import NewKeepModal from './components/globals/NewKeepModal.vue';
 import NewVaultModal from './components/globals/NewVaultModal.vue';
 
@@ -16,6 +17,7 @@ import NewVaultModal from './components/globals/NewVaultModal.vue';
   </footer>
   <NewKeepModal />
   <NewVaultModal />
+  <KeepDetailsModal />
 </template>
 
 <style lang="scss">

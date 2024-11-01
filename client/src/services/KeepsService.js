@@ -3,6 +3,7 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService {
+
   async getKeepsByVaultId(vaultId) {
     const response = await api.get('api/vaults/' + vaultId + '/keeps');
     let keeps = response.data.map(keepPojo => new Keep(keepPojo));

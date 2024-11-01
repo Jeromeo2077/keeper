@@ -47,8 +47,8 @@ async function deleteKeep(keepId) {
     <span>
       <ProfilePicture :profile="keep.creator" />
     </span>
-    <KeepDetailsModal />
   </div>
+  <!-- <KeepDetailsModal /> -->
 
 </template>
 

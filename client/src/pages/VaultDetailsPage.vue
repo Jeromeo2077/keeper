@@ -1,46 +1,67 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState.js';
+import { useRoute } from 'vue-router';
 import { vaultsService } from '@/services/VaultsService.js';
-import { keepsService } from '@/services/KeepsService.js';
-// import VaultCard from '@/components/VaultCard.vue';
-// import KeepCard from '@/components/KeepCard.vue';
+import Pop from '@/utils/Pop.js';
+import { logger } from '@/utils/Logger.js';
+
+
+
 
 const account = computed(() => AppState.account);
-const keeps = computed(() => AppState.accountKeeps);
+const vault = computed(() => AppState.activeVault);
 
-onMounted(async () => {
-  // await vaultsService.getVaultsByVaultId(account.value.id);
-  // await keepsService.getKeepsByKeepId(account.value.id);
+const route = useRoute();
+
+onMounted(() => {
+  getVaultDetailsById();
 });
+
+onUnmounted(() => {
+  AppState.activeVault = null;
+});
+
+
+async function getVaultDetailsById() {
+  try {
+    await vaultsService.getVaultDetailsById(route.params.vaultId);
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.error(error);
+  }
+}
+
+
 </script>
 
 <template>
-  <div class="container account-page">
+  <div v-if="vault" class="container account-page">
 
     <div class="cover-img">
-      <img :src="account.coverImg" alt="Cover Image" class="img-fluid">
+      <img :src="vault.img" alt="Cover Image" class="img-fluid">
       <div class="profile-picture">
         <img :src="account.picture" alt="Profile Picture" class="rounded-circle">
       </div>
     </div>
 
     <div class="account-info text-center">
-      <h1>{{ account.name }}</h1>
-      <p>{{ account.email }}</p>
-      <p class="m-0 p-0">Keeps: {{ keeps.length }}</p>
+      <h1>{{ vault.name }}</h1>
+      <h1>By {{ account.name }}</h1>
+      <p class="m-0 p-0">Keeps: </p>
     </div>
 
     <div class="row keeps-section">
-      <h2>Your Keeps</h2>
-      <div v-if="keeps.length" class="row">
-        <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4 mb-4">
-          <KeepCard :keep="keep" />
-        </div>
+      <h2>Keeps</h2>
+      <!-- <div v-if="keeps.length" class="row">
+      <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4 mb-4">
+        <KeepCard :keep="keep" />
       </div>
-      <div v-else>
+    </div>
+    <div v-else>
         <p>No keeps found.</p>
-      </div>
+      </div> -->
     </div>
 
   </div>

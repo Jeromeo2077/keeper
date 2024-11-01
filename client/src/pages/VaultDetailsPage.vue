@@ -55,7 +55,7 @@ function getKeepsByVaultId() {
 </script>
 
 <template>
-  <div v-if="vault && keeps" class="container account-page">
+  <div v-if="vault" class="container account-page">
 
     <div class="cover-img">
       <img :src="vault.img" alt="Cover Image" class="img-fluid">

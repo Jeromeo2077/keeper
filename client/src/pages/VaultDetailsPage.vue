@@ -64,7 +64,7 @@ function getKeepsByVaultId() {
     <div class="account-info text-center">
       <h1>{{ vault.name }}</h1>
       <h1>By {{ account.name }}</h1>
-      <p class="m-0 p-0">Keeps: </p>
+      <p class="m-0 p-0">Keeps: {{ keeps.length }}</p>
     </div>
 
     <div class="row keeps-section">

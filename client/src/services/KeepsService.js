@@ -2,9 +2,11 @@ import { Keep } from "@/models/Keep.js";
 import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
-class KeepsService{
-  createKeep(arg0) {
-    throw new Error('Method not implemented.');
+class KeepsService {
+  async createKeep(newKeepData) {
+    const response = await api.post('api/keeps', newKeepData);
+    const newKeep = new Keep(response.data);
+    AppState.keeps.unshift(newKeep);
   }
 
   async deleteKeep(keepId) {
@@ -19,13 +21,13 @@ class KeepsService{
     const keeps = response.data.map(keepPojo => new Keep(keepPojo));
     AppState.accountKeeps = keeps;
   }
-  
+
   async getAllKeeps() {
     const response = await api.get('api/keeps');
     const keeps = response.data.map(keepPojo => new Keep(keepPojo));
     AppState.keeps = keeps;
   }
-  
+
 
   async getKeepDetailsById(keepId) {
     AppState.activeKeep = null;

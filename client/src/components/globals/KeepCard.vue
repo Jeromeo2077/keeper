@@ -23,6 +23,8 @@ async function getKeepDetailsById(keepId) {
 
 async function deleteKeep(keepId) {
   try {
+    const confirmed = await Pop.confirm(`Are you sure you want to delete this Keep?`)
+    if (!confirmed) { return }
     await keepsService.deleteKeep(keepId);
     Pop.success('Keep deleted successfully');
   } catch (error) {

@@ -23,6 +23,8 @@ async function getVaultDetailsById() {
 
 async function deleteVault(vaultId) {
   try {
+    const confirmed = await Pop.confirm(`Are you sure you want to delete this Vault?`)
+    if (!confirmed) { return }
     await vaultsService.deleteVault(vaultId);
     Pop.success('Vault deleted successfully');
   } catch (error) {

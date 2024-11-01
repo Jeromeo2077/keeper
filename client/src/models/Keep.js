@@ -1,4 +1,5 @@
 import { Profile } from "./Profile.js"
+import { Vault } from "./Vault.js"
 
 export class Keep {
     constructor(data) {
@@ -10,6 +11,6 @@ export class Keep {
         this.kept = data.kept
         this.creatorId = data.creatorId
         this.creator = new Profile(data.creator)
-        this.vault = data.vault
+        this.vault = new Vault(data.vault)
     }
 }

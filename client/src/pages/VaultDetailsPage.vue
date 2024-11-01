@@ -5,18 +5,21 @@ import { useRoute, useRouter } from 'vue-router';
 import { vaultsService } from '@/services/VaultsService.js';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
+import { keepsService } from '@/services/KeepsService.js';
 
 
 
 
 const account = computed(() => AppState.account);
 const vault = computed(() => AppState.activeVault);
+const keeps = computed(() => AppState.vaultKeeps);
 
 const route = useRoute();
 const router = useRouter();
 
 onMounted(() => {
   getVaultDetailsById();
+  getKeepsByVaultId();
 });
 
 onUnmounted(() => {
@@ -38,10 +41,21 @@ async function getVaultDetailsById() {
 }
 
 
+function getKeepsByVaultId() {
+  try {
+    keepsService.getKeepsByVaultId(route.params.vaultId);
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.error(error);
+  }
+}
+
+
 </script>
 
 <template>
-  <div v-if="vault" class="container account-page">
+  <div v-if="vault && keeps" class="container account-page">
 
     <div class="cover-img">
       <img :src="vault.img" alt="Cover Image" class="img-fluid">
@@ -58,14 +72,14 @@ async function getVaultDetailsById() {
 
     <div class="row keeps-section">
       <h2>Keeps</h2>
-      <!-- <div v-if="keeps.length" class="row">
-      <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4 mb-4">
-        <KeepCard :keep="keep" />
+      <div v-if="keeps.length" class="row">
+        <div v-for="keep in keeps" :key="keep.id" class="col-12 col-md-4 mb-4">
+          <KeepCard :keep="keep" />
+        </div>
       </div>
-    </div>
-    <div v-else>
+      <div v-else>
         <p>No keeps found.</p>
-      </div> -->
+      </div>
     </div>
 
   </div>

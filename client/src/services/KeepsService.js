@@ -3,6 +3,12 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService {
+  async getKeepsByVaultId(vaultId) {
+    const response = await api.get('api/keeps');
+    let keeps = response.data.map(keepPojo => new Keep(keepPojo));
+    keeps = keeps.filter(keep => keep.vault.id === vaultId);
+    AppState.vaultKeeps = keeps;
+  }
   async createKeep(newKeepData) {
     const response = await api.post('api/keeps', newKeepData);
     const newKeep = new Keep(response.data);

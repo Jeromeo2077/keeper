@@ -26,5 +26,8 @@ export const AppState = reactive({
 
   /** @type {Keep[]} */
   accountKeeps: [],
+
+  /** @type {Keep[]} */
+  vaultKeeps: []
 })
 

@@ -5,8 +5,12 @@ import { logger } from '@/utils/Logger.js';
 import { Vault } from '@/models/Vault.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { keepsService } from '@/services/KeepsService.js';
+import { Account } from '@/models/Account.js';
+import { computed } from 'vue';
+import { AppState } from '@/AppState.js';
 
 defineProps({ vault: { type: Vault, required: true } });
+const account = computed(() => AppState.account);
 
 async function getVaultDetailsById() {
   try {
@@ -35,7 +39,7 @@ async function deleteVault(vaultId) {
 <template>
   <RouterLink :to="{ name: 'VaultDetails', params: { vaultId: vault.id } }">
     <div class="keep-card">
-      <button type="button" class="btn btn-danger delete-button" @click.stop="deleteVault(vault.id)">
+      <button v-if="account" type="button" class="btn btn-danger delete-button" @click.stop="deleteVault(vault.id)">
         <i class="mdi mdi-delete"></i>
       </button>
       <img :src="vault.img" :alt="vault.name" class="img-fluid keep-img rounded border border-3 shadow">

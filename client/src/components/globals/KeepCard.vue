@@ -5,8 +5,12 @@ import { keepsService } from '@/services/KeepsService.js';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
 import KeepDetailsModal from './KeepDetailsModal.vue';
+import { Account } from '@/models/Account.js';
+import { computed } from 'vue';
+import { AppState } from '@/AppState.js';
 
 defineProps({ keep: { type: Keep, required: true } });
+const account = computed(() => AppState.account);
 
 async function getKeepDetailsById(keepId) {
   try {
@@ -34,7 +38,7 @@ async function deleteKeep(keepId) {
 <template>
   <div class="keep-card btn" @click="getKeepDetailsById(keep.id)" data-bs-toggle="modal"
     data-bs-target="#KeepDetailsModal">
-    <button type="button" class="btn btn-danger delete-button" @click.stop="deleteKeep(keep.id)">
+    <button v-if="account" type="button" class="btn btn-danger delete-button" @click.stop="deleteKeep(keep.id)">
       <i class="mdi mdi-delete"></i>
     </button>
     <img :src="keep.img" :alt="keep.name" class="img-fluid keep-img rounded border border-3 shadow">

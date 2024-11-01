@@ -3,16 +3,19 @@ import { ref } from 'vue';
 import { vaultsService } from '@/services/VaultsService.js';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
+import Modal from 'bootstrap/js/dist/modal.js';
 
-const vaultName = ref('');
-const vaultDescription = ref('');
-const vaultImage = ref('');
+const editableVaultData = ref({
+  name: '',
+  description: '',
+  image: '',
+})
 
 async function createVault() {
   try {
-    await vaultsService.createVault({ name: vaultName.value, description: vaultDescription.value, image: vaultImage.value });
+    await vaultsService.createVault(editableVaultData.value);
+    Modal.getInstance('#NewVaultModal').hide();
     Pop.success('Vault created successfully');
-    // Optionally, you can reset the form fields or close the modal
   } catch (error) {
     Pop.error(error);
     logger.error(error);
@@ -33,15 +36,16 @@ async function createVault() {
           <form @submit.prevent="createVault">
             <div class="mb-3">
               <label for="vaultName" class="form-label">Vault Name</label>
-              <input type="text" class="form-control" id="vaultName" v-model="vaultName" required>
+              <input type="text" class="form-control" id="vaultName" v-model="editableVaultData.name" required>
             </div>
             <div class="mb-3">
               <label for="vaultDescription" class="form-label">Vault Description</label>
-              <textarea class="form-control" id="vaultDescription" v-model="vaultDescription" required></textarea>
+              <textarea class="form-control" id="vaultDescription" v-model="editableVaultData.description"
+                required></textarea>
             </div>
             <div class="mb-3">
               <label for="vaultImage" class="form-label">Vault Image</label>
-              <textarea class="form-control" id="vaultImage" v-model="vaultImage" required></textarea>
+              <textarea class="form-control" id="vaultImage" v-model="editableVaultData.image" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create Vault</button>
           </form>

@@ -22,18 +22,15 @@ async function getVaultDetailsById() {
 
 
 <template>
-  <div type="button" class="keep-card btn" @click="getVaultDetailsById()" data-bs-toggle="modal"
-    data-bs-target="#VaultDetailsModal">
-    <img :src="vault.img" :alt="vault.name" class="img-fluid keep-img rounded border border-3 shadow">
-    <h3>{{ vault.name }}</h3>
-    <span>
-      <ProfilePicture :profile="vault.creator" />
-    </span>
-
-    <KeepDetailsModal />
-  </div>
-
-
+  <RouterLink :to="{ name: 'VaultDetails', params: { vaultId: vault.id } }">
+    <div class="keep-card">
+      <img :src="vault.img" :alt="vault.name" class="img-fluid keep-img rounded border border-3 shadow">
+      <h3>{{ vault.name }}</h3>
+      <span>
+        <ProfilePicture :profile="vault.creator" />
+      </span>
+    </div>
+  </RouterLink>
 </template>
 
 

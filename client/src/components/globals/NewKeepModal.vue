@@ -21,11 +21,11 @@ async function createKeep() {
 
 
 <template>
-  <div class="modal fade" id="newKeepModal" tabindex="-1" aria-labelledby="newKeepModalLabel" aria-hidden="true">
+  <div class="modal fade" id="NewKeepModal" tabindex="-1" aria-labelledby="NewKeepModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="newKeepModalLabel">Create New Keep</h5>
+          <h5 class="modal-title" id="NewKeepModalLabel">Create New Keep</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

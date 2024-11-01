@@ -20,11 +20,11 @@ async function createVault() {
 </script>
 
 <template>
-  <div class="modal fade" id="newVaultModal" tabindex="-1" aria-labelledby="newVaultModalLabel" aria-hidden="true">
+  <div class="modal fade" id="NewVaultModal" tabindex="-1" aria-labelledby="NewVaultModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="newVaultModalLabel">Create New Vault</h5>
+          <h5 class="modal-title" id="NewVaultModalLabel">Create New Vault</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

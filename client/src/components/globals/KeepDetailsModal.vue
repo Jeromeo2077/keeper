@@ -1,11 +1,37 @@
 .
 <script setup>
 import { AppState } from '@/AppState.js';
-import { computed } from 'vue';
+import { keepsService } from '@/services/KeepsService.js';
+import Pop from '@/utils/Pop.js';
+import { computed, ref } from 'vue';
 
 const activeKeep = computed(() => {
   return AppState.activeKeep;
 });
+
+const accountVaults = computed(() => {
+  return AppState.accountVaults;
+});
+
+const editableVaultKeepData = ref({
+  vaultId: 0,
+  keepId: 0
+});
+
+async function createVaultKeep() {
+  try {
+
+    editableVaultKeepData.value.keepId = activeKeep.value.id
+    // await vaultKeepsService.createVaultKeep(editableVaultKeepData.value);
+    editableVaultKeepData.value = {
+      vaultId: 0,
+      keepId: 0
+    };
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 
 </script>
 
@@ -34,6 +60,20 @@ const activeKeep = computed(() => {
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form @submit.prevent="createVaultKeep()">
+            <div class="row">
+              <select @click.stop v-model="editableVaultKeepData.vaultId" class="form-select form-sm"
+                aria-label="Select a Vault" required>
+                <option selected :value="0" disabled>Select a Vault</option>
+                <option v-for="accountVault in accountVaults" :key="accountVault.id" :value="accountVault.id">
+                  {{ accountVault.name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
           <span>
             <ProfilePicture :profile="activeKeep.creator" />
           </span>

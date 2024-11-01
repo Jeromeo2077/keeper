@@ -5,7 +5,6 @@ import { keepsService } from '@/services/KeepsService.js';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
 import KeepDetailsModal from './KeepDetailsModal.vue';
-import { Account } from '@/models/Account.js';
 import { computed } from 'vue';
 import { AppState } from '@/AppState.js';
 

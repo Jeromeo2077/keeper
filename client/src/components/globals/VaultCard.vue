@@ -5,7 +5,6 @@ import { logger } from '@/utils/Logger.js';
 import { Vault } from '@/models/Vault.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { keepsService } from '@/services/KeepsService.js';
-import { Account } from '@/models/Account.js';
 import { computed } from 'vue';
 import { AppState } from '@/AppState.js';
 

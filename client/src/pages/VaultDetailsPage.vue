@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState.js';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { vaultsService } from '@/services/VaultsService.js';
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
@@ -13,6 +13,7 @@ const account = computed(() => AppState.account);
 const vault = computed(() => AppState.activeVault);
 
 const route = useRoute();
+const router = useRouter();
 
 onMounted(() => {
   getVaultDetailsById();
@@ -30,6 +31,9 @@ async function getVaultDetailsById() {
   catch (error) {
     Pop.error(error);
     logger.error(error);
+    if (error.response.data == "Access Error: You are not the creator of this vault!") {
+      router.push({ name: 'Home' })
+    }
   }
 }
 

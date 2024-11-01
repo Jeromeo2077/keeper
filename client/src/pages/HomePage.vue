@@ -1,7 +1,7 @@
 <script setup>
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '@/AppState.js';
 import { keepsService } from '@/services/KeepsService.js';
 import KeepCard from '@/components/globals/KeepCard.vue';
@@ -12,10 +12,6 @@ const keeps = computed(() => {
 });
 
 onMounted(() => {
-  getAllKeeps();
-});
-
-watch(keeps, () => {
   getAllKeeps();
 });
 

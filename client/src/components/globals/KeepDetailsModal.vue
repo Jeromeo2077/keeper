@@ -1,9 +1,14 @@
 .
 <script setup>
 import { AppState } from '@/AppState.js';
-import { keepsService } from '@/services/KeepsService.js';
+
+import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import Pop from '@/utils/Pop.js';
 import { computed, ref } from 'vue';
+
+const account = computed(() => {
+  return AppState.account;
+});
 
 const activeKeep = computed(() => {
   return AppState.activeKeep;
@@ -22,7 +27,7 @@ async function createVaultKeep() {
   try {
 
     editableVaultKeepData.value.keepId = activeKeep.value.id
-    // await vaultKeepsService.createVaultKeep(editableVaultKeepData.value);
+    await vaultKeepsService.createVaultKeep(editableVaultKeepData.value);
     editableVaultKeepData.value = {
       vaultId: 0,
       keepId: 0
@@ -60,7 +65,7 @@ async function createVaultKeep() {
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <form @submit.prevent="createVaultKeep()">
+          <form v-if="account" @submit.prevent="createVaultKeep()">
             <div class="row">
               <select @click.stop v-model="editableVaultKeepData.vaultId" class="form-select form-sm"
                 aria-label="Select a Vault" required>

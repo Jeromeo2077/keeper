@@ -1,7 +1,10 @@
+import { api } from "./AxiosService.js";
+
 class VaultKeepsService {
 
-  async createVaultKeep(vaultKeep) {
-    return await dbContext.VaultKeeps.create(vaultKeep)
+  async createVaultKeep(vaultKeepData) {
+    const response = await api.post('api/vaultkeeps', vaultKeepData)
+    return response.data
   }
 
   // async delete(vaultKeep) {

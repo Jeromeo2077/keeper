@@ -3,6 +3,9 @@ import { api } from "./AxiosService.js";
 import { AppState } from "@/AppState.js";
 
 class KeepsService{
+  createKeep(arg0) {
+    throw new Error('Method not implemented.');
+  }
 
   async deleteKeep(keepId) {
     await api.delete('api/keeps/' + keepId);

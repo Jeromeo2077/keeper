@@ -3,6 +3,9 @@ import { Vault } from "@/models/Vault.js";
 import { AppState } from "@/AppState.js";
 
 class VaultsService {
+  createVault(arg0) {
+    throw new Error('Method not implemented.');
+  }
 
  async deleteVault(vaultId) {
     await api.delete('api/vaults/' + vaultId);

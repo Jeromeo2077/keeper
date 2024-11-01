@@ -1,6 +1,18 @@
 <script setup>
 import Icon from './globals/Icon.vue';
 import Login from './Login.vue';
+import NewKeepModal from './globals/NewKeepModal.vue';
+import NewVaultModal from './globals/NewVaultModal.vue';
+
+
+function createKeep() {
+  // createKeep function 
+}
+
+function createVault() {
+  // createVault
+}
+
 </script>
 
 <template>
@@ -21,13 +33,16 @@ import Login from './Login.vue';
 
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- <ul class="navbar-nav me-auto"> -->
-      <select class="form-select form-select-sm selector" aria-label="Create Selector">
-        <option selected>Create</option>
-        <option value="1">New Vault</option>
-        <option value="2">New Keep</option>
-      </select>
-      <!-- </ul> -->
+      <button type="button" class="btn btn-primary me-2" @click="createVault()" data-bs-toggle="modal"
+        data-bs-target="#NewVaultModal">New Vault</button>
+
+      <button type="button" class="btn btn-primary" @click="createKeep()" data-bs-toggle="modal"
+        data-bs-target="#NewKeepModal">New Keep</button>
+
+      <NewKeepModal />
+      <NewVaultModal />
     </div>
+    <!-- </ul> -->
     <div>
       <div class="d-flex justify-content-center flex-grow-1">
         <Icon class="fs-3" name="shield" />
@@ -40,6 +55,8 @@ import Login from './Login.vue';
     </div>
   </nav>
   <hr class="hr-shadow my-4">
+
+
 </template>
 
 <style scoped>

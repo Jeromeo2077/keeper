@@ -4,10 +4,8 @@ import { AppState } from "@/AppState.js";
 
 class KeepsService {
   async getKeepsByVaultId(vaultId) {
-    const response = await api.get('api/keeps');
-    console.log(response.data);
+    const response = await api.get('api/vaults/' + vaultId + '/keeps');
     let keeps = response.data.map(keepPojo => new Keep(keepPojo));
-    keeps = keeps.filter(keep => keep.vault.id === vaultId);
     AppState.vaultKeeps = keeps;
   }
   async createKeep(newKeepData) {

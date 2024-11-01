@@ -10,6 +10,5 @@ export class Vault {
         this.img = data.img
         this.creatorId = data.creatorId
         this.creator = new Profile(data.creator)
-        this.keeps = new Keep(data.keeps)
     }
 }

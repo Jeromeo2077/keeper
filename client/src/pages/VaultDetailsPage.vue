@@ -7,9 +7,6 @@ import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
 import { keepsService } from '@/services/KeepsService.js';
 
-
-
-
 const account = computed(() => AppState.account);
 const vault = computed(() => AppState.activeVault);
 const keeps = computed(() => AppState.vaultKeeps);

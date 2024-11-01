@@ -10,20 +10,20 @@ const account = computed(() => AppState.account);
 const vaults = computed(() => AppState.accountVaults);
 const keeps = computed(() => AppState.accountKeeps);
 
-onMounted(async () => {
-  await vaultsService.getVaultsByAccountId(account.value.id);
-  await keepsService.getKeepsByAccountId(account.value.id);
-});
+// onMounted(async () => {
+//   // await vaultsService.getVaultsByAccountId(account.value.id);
+//   // await keepsService.getKeepsByAccountId(account.value.id);
+// });
 
-watch(account, async () => {
-  await vaultsService.getVaultsByAccountId(account.value.id);
-  await keepsService.getKeepsByAccountId(account.value.id);
-});
+// watch(account, async () => {
+//   await vaultsService.getVaultsByAccountId(account.value.id);
+//   await keepsService.getKeepsByAccountId(account.value.id);
+// });
 
 </script>
 
 <template>
-  <div class="container account-page">
+  <div v-if="account" class="container account-page">
 
     <div class="cover-img">
       <img :src="account.coverImg" alt="Cover Image" class="img-fluid">

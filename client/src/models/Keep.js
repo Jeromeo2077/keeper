@@ -11,6 +11,5 @@ export class Keep {
         this.kept = data.kept
         this.creatorId = data.creatorId
         this.creator = new Profile(data.creator)
-        this.vault = new Vault(data.vault)
     }
 }

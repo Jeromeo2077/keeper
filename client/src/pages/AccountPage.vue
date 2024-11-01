@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { AppState } from '../AppState.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { keepsService } from '@/services/KeepsService.js';
@@ -14,6 +14,12 @@ onMounted(async () => {
   await vaultsService.getVaultsByAccountId(account.value.id);
   await keepsService.getKeepsByAccountId(account.value.id);
 });
+
+watch(account, async () => {
+  await vaultsService.getVaultsByAccountId(account.value.id);
+  await keepsService.getKeepsByAccountId(account.value.id);
+});
+
 </script>
 
 <template>

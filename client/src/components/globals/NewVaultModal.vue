@@ -8,7 +8,7 @@ import Modal from 'bootstrap/js/dist/modal.js';
 const editableVaultData = ref({
   name: '',
   description: '',
-  image: '',
+  img: '',
 })
 
 async function createVault() {
@@ -45,7 +45,7 @@ async function createVault() {
             </div>
             <div class="mb-3">
               <label for="vaultImage" class="form-label">Vault Image</label>
-              <textarea class="form-control" id="vaultImage" v-model="editableVaultData.image" required></textarea>
+              <textarea class="form-control" id="vaultImage" v-model="editableVaultData.img" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create Vault</button>
           </form>

@@ -3,11 +3,14 @@ import { Vault } from "@/models/Vault.js";
 import { AppState } from "@/AppState.js";
 
 class VaultsService {
-  createVault(arg0) {
-    throw new Error('Method not implemented.');
+
+  async createVault(newVaultData) {
+    const response = await api.post('api/vaults', newVaultData);
+    const newVault = new Vault(response.data);
+    AppState.accountVaults.unshift(newVault);
   }
 
- async deleteVault(vaultId) {
+  async deleteVault(vaultId) {
     await api.delete('api/vaults/' + vaultId);
     AppState.accountVaults = AppState.accountVaults.filter(vault => vault.id !== vaultId);
   }
@@ -20,4 +23,4 @@ class VaultsService {
   }
 }
 
-    export const vaultsService = new VaultsService();
+export const vaultsService = new VaultsService();

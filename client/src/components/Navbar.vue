@@ -1,17 +1,8 @@
 <script setup>
 import Icon from './globals/Icon.vue';
 import Login from './Login.vue';
-import NewKeepModal from './globals/NewKeepModal.vue';
-import NewVaultModal from './globals/NewVaultModal.vue';
 
 
-function createKeep() {
-  // createKeep function 
-}
-
-function createVault() {
-  // createVault
-}
 
 </script>
 
@@ -33,14 +24,13 @@ function createVault() {
 
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- <ul class="navbar-nav me-auto"> -->
-      <button type="button" class="btn btn-primary me-2" @click="createVault()" data-bs-toggle="modal"
-        data-bs-target="#NewVaultModal">New Vault</button>
+      <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#NewVaultModal">New
+        Vault</button>
 
-      <button type="button" class="btn btn-primary" @click="createKeep()" data-bs-toggle="modal"
-        data-bs-target="#NewKeepModal">New Keep</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewKeepModal">New
+        Keep</button>
 
-      <NewKeepModal />
-      <NewVaultModal />
+
     </div>
     <!-- </ul> -->
     <div>
